@@ -7,22 +7,30 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import Image from "next/image";
 
 const ProductsCard = ({ product }) => {
   return (
-    <Card>
+    <Card className="flex flex-col">
       <CardHeader>
-        <div className="w-[10vw]">
-          <img src={product.image} alt={product.title} className="w-full" />
+        <div className="relative w-full h-48">
+          <Image
+            src={product.image}
+            alt={product.title}
+            fill
+            style={{ objectFit: "contain" }}
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+          />
         </div>
-        <CardTitle>Cproduct.title</CardTitle>
-        <CardDescription>Card Description</CardDescription>
+        <CardTitle className="truncate h-7 mt-4">{product.tittle}</CardTitle>
+        <CardDescription>{product.category}</CardDescription>
       </CardHeader>
-      <CardContent>
-        <p>Card Content</p>
+      <CardContent className="flex-grow">
+        <p className="font-bold text-lg">${product.price}</p>
       </CardContent>
       <CardFooter>
-        <p>Card Footer</p>
+        <link href={`/product/${product.id}`} className="w-full"></link>Ver
+        detalle
       </CardFooter>
     </Card>
   );
