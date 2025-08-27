@@ -21,7 +21,7 @@ const items = [
   },
   {
     title: "Products",
-    url: "/Products",
+    url: "/products",
     icon: Boxes,
   },
   {

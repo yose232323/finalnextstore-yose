@@ -8,6 +8,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import Image from "next/image";
+import Link from "next/link";
 
 const ProductsCard = ({ product }) => {
   return (
@@ -22,15 +23,19 @@ const ProductsCard = ({ product }) => {
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
           />
         </div>
-        <CardTitle className="truncate h-7 mt-4">{product.tittle}</CardTitle>
+        <CardTitle className="truncate h-7 mt-4">{product.title}</CardTitle>
         <CardDescription>{product.category}</CardDescription>
       </CardHeader>
       <CardContent className="flex-grow">
         <p className="font-bold text-lg">${product.price}</p>
       </CardContent>
       <CardFooter>
-        <link href={`/product/${product.id}`} className="w-full"></link>Ver
-        detalle
+        <Link
+          href={`/products/${product.id}`}
+          className="w-full text-center p-2 bg-zinc-500 text-white rounded hover:bg-zinc-700"
+        >
+          Ver Detalle
+        </Link>
       </CardFooter>
     </Card>
   );

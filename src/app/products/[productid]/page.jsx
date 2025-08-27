@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Image from "next/image";
 
@@ -7,12 +7,12 @@ const ProductDetailPage = ({ params }) => {
   const { productid } = params;
   const [product, setProduct] = useState(null);
   const [loading, setLoading] = useState(true);
-  consts[(error, setError)] = useState(null);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     const fetchProduct = async () => {
       const response = await axios.get(
-        `https://fakestoreapi.com/product/${productid}`
+        `https://fakestoreapi.com/products/${productid}`
       );
       //console.log(response);
       setProduct(response.data);
@@ -20,7 +20,7 @@ const ProductDetailPage = ({ params }) => {
       setLoading(false);
     };
     fetchProduct();
-  }, [productid]);
+  }, []);
 
   if (loading) return <p>Cargando...</p>;
   if (error) return <p>Error</p>;
@@ -28,12 +28,14 @@ const ProductDetailPage = ({ params }) => {
 
   return (
     <div className="container mx-auto p-4 md:p-8">
+      <div className="grid md:grid-cols-2 gap-8 items-start border border-gray-50 shadow-lg rounded-xl p-8"></div>
       <div className="relative w-full h-96 bg-zinc-50 rounded-lg p-4">
-        <image
+        <Image
           src={product.image}
           alt={product.title}
           fill
-          style={{ objectFit: "contain" }}
+          style={{ objectFit: `contain` }}
+          priority
         />
       </div>
     </div>
