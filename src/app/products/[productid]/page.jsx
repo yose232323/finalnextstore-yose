@@ -27,16 +27,32 @@ const ProductDetailPage = ({ params }) => {
   if (!product) return <p>No se encontro el producto...</p>;
 
   return (
-    <div className="container mx-auto p-4 md:p-8">
-      <div className="grid md:grid-cols-2 gap-8 items-start border border-gray-50 shadow-lg rounded-xl p-8"></div>
-      <div className="relative w-full h-96 bg-zinc-50 rounded-lg p-4">
-        <Image
-          src={product.image}
-          alt={product.title}
-          fill
-          style={{ objectFit: `contain` }}
-          priority
-        />
+    <div className="container mx-auto px-4 md:p-32">
+      <div className="grid md:grid-cols-2 gap-8 items-start border border-gray-50 shadow-lg rounded-xl p-8">
+        <div className="relative w-full h-96 bg-zinc-0 rounded-lg p-4">
+          <Image
+            src={product.image}
+            alt={product.title}
+            fill
+            style={{ objectFit: `contain` }}
+            priority
+          />
+        </div>
+        <div className="flex flex-col gap-4">
+          <h2 className="text lg font-bold text-2xl text-zinc-600 py-2">
+            {product.title}
+          </h2>
+          <p className="text sm font-medium text-zinc-500 bg -zinc-200 uppercase rounded-md w-fit">
+            {product.category}
+          </p>
+          <p className="text-sm text-zinc-500 leading-relaxed text-justify">
+            {product.description}
+          </p>
+
+          <p className="text-3xl font-semibold text-zinc-600 py-2">
+            ${product.price}
+          </p>
+        </div>
       </div>
     </div>
   );

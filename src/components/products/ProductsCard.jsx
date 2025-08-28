@@ -23,7 +23,9 @@ const ProductsCard = ({ product }) => {
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
           />
         </div>
-        <CardTitle className="truncate h-7 mt-4">{product.title}</CardTitle>
+        <CardTitle className="truncate h-6 mt-4 py-4">
+          {product.title}
+        </CardTitle>
         <CardDescription>{product.category}</CardDescription>
       </CardHeader>
       <CardContent className="flex-grow">
