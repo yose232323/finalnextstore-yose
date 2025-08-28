@@ -11,6 +11,8 @@ import {
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
 import Link from "next/link";
+import ShoppingCart from "../cart/ShoppingCart";
+import Logo from "./Logo";
 
 // Menu items.
 const items = [
@@ -34,9 +36,11 @@ const items = [
 export function AppSidebar() {
   return (
     <Sidebar>
-      <SidebarContent className="text bg-zinc-100 font-semibold">
+      <SidebarContent className="text bg-zinc-100 font-semibold flex flex-col justify-between">
         <SidebarGroup>
-          <SidebarGroupLabel>Application</SidebarGroupLabel>
+          <SidebarGroupLabel>
+            <Logo />
+          </SidebarGroupLabel>
           <SidebarGroupContent>
             <SidebarMenu>
               {items.map((item) => (
@@ -54,6 +58,12 @@ export function AppSidebar() {
                 </SidebarMenuItem>
               ))}
             </SidebarMenu>
+          </SidebarGroupContent>
+        </SidebarGroup>
+
+        <SidebarGroup>
+          <SidebarGroupContent>
+            <ShoppingCart />
           </SidebarGroupContent>
         </SidebarGroup>
       </SidebarContent>
