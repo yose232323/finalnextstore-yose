@@ -8,6 +8,11 @@ const nextConfig = {
         port: "",
         pathname: "/img/**",
       },
+      {
+        protocol: "https",
+        hostname: "amuli.co",
+        pathname: "/cdn/shop/files/**",
+      },
     ],
   },
 };

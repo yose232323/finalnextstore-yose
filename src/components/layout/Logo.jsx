@@ -5,7 +5,7 @@ const Logo = () => {
   return (
     <div className="text-lg font-bold text-zinc-900 flex gap-1">
       <ShoppingBag />
-      <span>Brillare Studio</span>
+      <span>Brillare Store</span>
     </div>
   );
 };
