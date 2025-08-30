@@ -7,8 +7,12 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet";
 import { ShoppingBasket } from "lucide-react";
-import { Button } from "../ui/button";
+import { useCartStore } from "@/store/cart-store";
+import { Separator } from "../ui/separator";
+
 const ShoppingCart = () => {
+  const { items } = useCartStore();
+
   return (
     <Sheet>
       <SheetTrigger asChild>
@@ -22,6 +26,11 @@ const ShoppingCart = () => {
         <SheetHeader>
           <SheetTitle>Are you absolutely sure?</SheetTitle>
         </SheetHeader>
+        <div>
+          {items.map((item) => (
+            <p>{item.title}</p>
+          ))}
+        </div>
       </SheetContent>
     </Sheet>
   );
