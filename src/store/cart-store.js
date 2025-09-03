@@ -32,11 +32,13 @@ export const useCartStore = create((set, get) => ({
     }));
   },
 
-  decrementQuantity: () => {}, //esta la hacen uds
-
-  //aqui van los selectores (estado derivado)
-
-  //los selectores nosa dan datos calculados del estado
+  decrementQuantity: (productId) => {
+    set((state) => ({
+      items: state.items.map((item) =>
+        item.id === productId ? { ...item, quantity: item.quantity - 1 } : item
+      ),
+    }));
+  },
   getTotalItems: () => {
     const { items } = get();
     return items.reduce((total, item) => total + item.quantity, 0);
