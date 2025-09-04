@@ -9,16 +9,13 @@ import {
 import { ShoppingBasket } from "lucide-react";
 import { useCartStore } from "@/store/cart-store";
 import { Separator } from "../ui/separator";
+import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
 
 const ShoppingCart = () => {
-  const {
-    items,
-    removeProduct,
-    incrementQuantity,
-    decrementQuantity,
-    getTotalItems,
-    getTotalPrice,
-  } = useCartStore();
+  const { items, removeProduct, incrementQuantity, decrementQuantity } =
+    useCartStore();
+
   const totalItems = items.reduce((acc, item) => acc + item.quantity, 0);
   const totalPrice = items.reduce(
     (acc, item) => acc + item.price * item.quantity,
@@ -28,7 +25,7 @@ const ShoppingCart = () => {
   return (
     <Sheet>
       <SheetTrigger asChild>
-        <button className="flex items-center gap-2 p-2 rounded-md hover:bg-zinc-100 transitions-color ">
+        <button className="flex items-center gap-2 p-2 rounded-md hover:bg-zinc-100 transition-colors">
           <ShoppingBasket />
           <span>Mi carrito</span>
         </button>
@@ -38,38 +35,49 @@ const ShoppingCart = () => {
         <SheetHeader>
           <SheetTitle>Tu carrito</SheetTitle>
         </SheetHeader>
+
         {/* Lista de productos */}
-        <div>
+        <div className="space-y-4 mt-4">
           {items.map((item) => (
-            <p>
-              {item.title}
-              <button
-                onClick={() => decrementQuantity(item.id)}
-                className="bg-zinc-400 p-1"
-              >
-                -
-              </button>
+            <Card key={item.id}>
+              <CardHeader className="flex flex-row items-center justify-between">
+                <CardTitle className="text-lg">{item.title}</CardTitle>
+                <Button
+                  onClick={() => removeProduct(item.id)}
+                  variant="destructive"
+                  size="sm"
+                >
+                  x
+                </Button>
+              </CardHeader>
 
-              <span className="bg-zinc-600 text-white p-2">
-                {item.quantity}
-              </span>
+              <CardContent className="flex items-center justify-between">
+                <div className="flex items-center gap-2">
+                  <Button
+                    onClick={() => decrementQuantity(item.id)}
+                    size="sm"
+                    variant="outline"
+                  >
+                    -
+                  </Button>
+                  <span className="px-3">{item.quantity}</span>
+                  <Button
+                    onClick={() => incrementQuantity(item.id)}
+                    size="sm"
+                    variant="outline"
+                  >
+                    +
+                  </Button>
+                </div>
 
-              <button
-                onClick={() => incrementQuantity(item.id)}
-                className="bg bg-zinc-400 p-1"
-              >
-                +
-              </button>
-
-              <button
-                onClick={() => removeProduct(item.id)}
-                className="bg-red-700 p-2 justify-end text-white font-semi-bold"
-              >
-                x
-              </button>
-            </p>
+                <span className="font-semibold">
+                  ${(item.price * item.quantity).toFixed(2)}
+                </span>
+              </CardContent>
+            </Card>
           ))}
         </div>
+
         <Separator className="my-4" />
 
         {/* Totales */}

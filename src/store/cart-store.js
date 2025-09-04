@@ -33,11 +33,17 @@ export const useCartStore = create((set, get) => ({
   },
 
   decrementQuantity: (productId) => {
-    set((state) => ({
-      items: state.items.map((item) =>
-        item.id === productId ? { ...item, quantity: item.quantity - 1 } : item
-      ),
-    }));
+    set((state) => {
+      const updatedItems = state.items
+        .map((item) =>
+          item.id === productId
+            ? { ...item, quantity: item.quantity - 1 }
+            : item
+        )
+        .filter((item) => item.quantity > 0); // 🔥 elimina productos en 0
+
+      return { items: updatedItems };
+    });
   },
   getTotalItems: () => {
     const { items } = get();
