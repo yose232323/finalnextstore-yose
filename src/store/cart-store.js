@@ -40,7 +40,7 @@ export const useCartStore = create((set, get) => ({
             ? { ...item, quantity: item.quantity - 1 }
             : item
         )
-        .filter((item) => item.quantity > 0); // 🔥 elimina productos en 0
+        .filter((item) => item.quantity > 0);
 
       return { items: updatedItems };
     });
