@@ -1,16 +1,17 @@
-import { mongoose } from "@radix-ui/react-dialog";
 import mongoose from "mongoose";
+
 const ProductSchema = new mongoose.Schema({
   title: { type: String, required: true },
-  description: { type: String, required },
+  description: { type: String, required: true },
   price: { type: Number, required: true },
-  imageUrl: { type: String },
-  imagePublicId: { type: String },
   category: { type: String, required: true },
-  rating: {},
-  rate: { type: Number, default: 0 },
-  count: { type: Number, default: 0 },
+  image: { type: String },
+  imagePublicId: { type: String },
+  rating: {
+    rate: { type: Number, default: 0 },
+    count: { type: Number, default: 0 },
+  },
 });
 
 export default mongoose.models.Product ||
-  mongoose.model(`Product,ProductSchema`);
+  mongoose.model("Product", ProductSchema);

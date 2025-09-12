@@ -1,4 +1,5 @@
-import { Boxes, Home, Rocket } from "lucide-react";
+//src/components/layout/AppSidebar.jsx
+import { Home, Boxes, Rocket, Settings, Settings2 } from "lucide-react";
 
 import {
   Sidebar,
@@ -10,6 +11,7 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
+import { Separator } from "@/components/ui/separator";
 import Link from "next/link";
 import ShoppingCart from "../cart/ShoppingCart";
 import Logo from "./Logo";
@@ -36,7 +38,7 @@ const items = [
 export function AppSidebar() {
   return (
     <Sidebar>
-      <SidebarContent className="text bg-zinc-100 font-semibold flex flex-col justify-between">
+      <SidebarContent className="bg-teal-50 text-teal-700 font-semibold flex flex-col justify-between">
         <SidebarGroup>
           <SidebarGroupLabel>
             <Logo />
@@ -50,17 +52,21 @@ export function AppSidebar() {
                       <item.icon />
                       <span>{item.title}</span>
                     </Link>
-                    {/*   <a href={item.url}>
-                      <item.icon />
-                      <span>{item.title}</span>
-                    </a> */}
                   </SidebarMenuButton>
                 </SidebarMenuItem>
               ))}
+              <Separator className="my-2" />
+              <SidebarMenuItem>
+                <SidebarMenuButton asChild>
+                  <Link href="/admin/products">
+                    <Settings />
+                    <span>Admin</span>
+                  </Link>
+                </SidebarMenuButton>
+              </SidebarMenuItem>
             </SidebarMenu>
           </SidebarGroupContent>
         </SidebarGroup>
-
         <SidebarGroup>
           <SidebarGroupContent>
             <ShoppingCart />
