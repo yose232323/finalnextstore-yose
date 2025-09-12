@@ -10,6 +10,12 @@ const nextConfig = {
       },
       {
         protocol: "https",
+        hostname: "res.cloudinary.com",
+        port: "",
+        pathname: "/**", // 👈 acepta cualquier carpeta de Cloudinary
+      },
+      {
+        protocol: "https",
         hostname: "amuli.co",
         pathname: "/cdn/shop/files/**",
       },

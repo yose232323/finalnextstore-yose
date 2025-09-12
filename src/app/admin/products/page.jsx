@@ -10,10 +10,13 @@ import ProductsTable from "@/components/admin/ProductsTable";
 
 const AdminProductsPage = () => {
   const [products, setProducts] = useState([]);
-  const [iseditingDialog, setIsEditingDialog] = useState(false);
-  const [SelectedProduct, setSelectedProduct] = useState(null);
+  const [isEditingDialogOpen, setIsEditingDialogOpen] = useState(false);
+  const [selectedProduct, setSelectedProduct] = useState(null);
 
-  const handleEditClick = {};
+  const handleEditClick = (product) => {
+    setSelectedProduct(product);
+    setIsEditingDialogOpen(true);
+  };
 
   const fetchProducts = async () => {
     const response = await axios.get("/api/products");
@@ -37,7 +40,17 @@ const AdminProductsPage = () => {
         </h1>
         <CreateProductDialog onProductCreated={fetchProducts} />
       </div>
-      <ProductsTable products={products} onDeleteProduct={handleDelete} />
+      <ProductsTable
+        products={products}
+        onDeleteProduct={handleDelete}
+        onEditProduct={handleEditClick}
+      />
+      <EditProductDialog
+        product={selectedProduct}
+        onProductSaved={fetchProducts}
+        open={isEditingDialogOpen}
+        setOpen={setIsEditingDialogOpen}
+      />
     </div>
   );
 };

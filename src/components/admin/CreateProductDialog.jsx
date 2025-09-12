@@ -85,7 +85,7 @@ const CreateProductDialog = ({ onProductCreated }) => {
 
       <DialogContent>
         <DialogHeader>
-          <DialogTitle>Crear&quot; un nuevo producto</DialogTitle>
+          <DialogTitle>Crear un nuevo producto</DialogTitle>
           <DialogDescription>
             Complete todos los detalles del formulario
           </DialogDescription>
