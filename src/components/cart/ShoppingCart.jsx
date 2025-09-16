@@ -1,4 +1,3 @@
-//src/components/cart/ShoppingCart.jsx
 "use client";
 import {
   Sheet,
@@ -8,59 +7,31 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet";
 import { ShoppingBasket } from "lucide-react";
+import { Button } from "../ui/button";
 import { useCartStore } from "@/store/cart-store";
 import { Separator } from "../ui/separator";
 
 const ShoppingCart = () => {
-  const {
-    items,
-    removeProduct,
-    incrementQuantity,
-    getTotalItems,
-    getTotalPrice,
-  } = useCartStore();
-
-  const totalItems = getTotalItems();
-  const totalPrice = getTotalPrice();
+  const { items } = useCartStore();
 
   return (
     <Sheet>
       <SheetTrigger asChild>
-        <button className="flex items-center gap-2 p-2 rounded-md hover:bg-teal-100 trasitions-colors">
+        <button className="flex items-center gap-2 p-2 rounded-md hover:bg-zinc-100 transitions-color ">
           <ShoppingBasket />
-          <span>Mi Carrito</span>
+          <span>Mi carrito</span>
         </button>
       </SheetTrigger>
 
       <SheetContent className="w-[400px] sm:w-[540px]">
         <SheetHeader>
-          <SheetTitle>Mi Carrito de compras</SheetTitle>
+          <SheetTitle>Are you absolutely sure?</SheetTitle>
         </SheetHeader>
-        {/* ustedes deben organizar el carrito */}
         <div>
           {items.map((item) => (
-            <p key={item._id}>
-              {item.title}
-              <button className="bg-slate-400 p-1">-</button>
-              <span className="bg-teal-700 text-white">{item.quantity}</span>
-              <button
-                onClick={() => incrementQuantity(item.id)}
-                className="bg-slate-400 p-1"
-              >
-                +
-              </button>
-              <button
-                onClick={() => removeProduct(item.id)}
-                className="bg-red-700 text-white font-bold"
-              >
-                x
-              </button>
-            </p>
+            <p>{item.title}</p>
           ))}
         </div>
-        <Separator />
-        <div>Total productos:{totalItems}</div>
-        <div>Total a pagar:{totalPrice}</div>
       </SheetContent>
     </Sheet>
   );

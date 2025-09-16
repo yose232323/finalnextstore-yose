@@ -4,8 +4,8 @@ import { ShoppingBag } from "lucide-react";
 
 const Logo = () => {
   return (
-    <div className="text-lg font-bold text-teal-900 flex gap-1">
-      <ShoppingBag /> <span>Diegos Store</span>
+    <div className="text-lg font-bold text-stone-600 flex gap-1">
+      <ShoppingBag /> <span>Yose Store</span>
     </div>
   );
 };

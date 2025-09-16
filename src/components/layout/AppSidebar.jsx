@@ -38,7 +38,7 @@ const items = [
 export function AppSidebar() {
   return (
     <Sidebar>
-      <SidebarContent className="bg-teal-50 text-teal-700 font-semibold flex flex-col justify-between">
+      <SidebarContent className="bg-stone-50 text-stone-700 font-semibold flex flex-col justify-between">
         <SidebarGroup>
           <SidebarGroupLabel>
             <Logo />
