@@ -37,7 +37,7 @@ const ProductsCard = ({ product }) => {
       <CardFooter>
         <div className="flex flex-col">
           <Link
-            href={`/products/${product.id}`}
+            href={`/products/${product._id}`}
             className="w-full text-center p-2 bg-zinc-500 text-white rounded hover:bg-zinc-700"
           >
             Ver Detalle

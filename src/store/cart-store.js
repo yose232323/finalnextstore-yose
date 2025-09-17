@@ -7,7 +7,7 @@ export const useCartStore = create((set, get) => ({
   //--ACCIONES
   addProduct: (product) => {
     const { items } = get();
-    const existingProduct = items.findIndex((item) => item.id === product.id);
+    const existingProduct = items.findIndex((item) => item._id === product.id);
 
     if (existingProduct !== -1) {
       const updatedItems = [...items];
@@ -20,19 +20,29 @@ export const useCartStore = create((set, get) => ({
 
   removeProduct: (productId) => {
     set((state) => ({
-      items: state.items.filter((item) => item.id !== productId),
+      items: state.items.filter((item) => item._id !== productId),
     }));
   },
 
   incrementQuantity: (productId) => {
     set((state) => ({
       items: state.items.map((item) =>
-        item.id === productId ? { ...item, quantity: item.quantity + 1 } : item
+        item._id === productId ? { ...item, quantity: item.quantity + 1 } : item
       ),
     }));
   },
 
-  decrementQuantity: () => {}, //esta la hacen uds
+  decrementQuantity: (productId) => {
+    set((state) => ({
+      items: state.items
+        .map((item) =>
+          item._id === productId
+            ? { ...item, quantity: item.quantity - 1 }
+            : item
+        )
+        .filter((item) => item.quantity > 0),
+    }));
+  },
 
   //aqui van los selectores (estado derivado)
 
