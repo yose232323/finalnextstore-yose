@@ -46,9 +46,6 @@ const ShoppingCart = () => {
               <CardContent className="flex items-center justify-between">
                 <span>{item.title}</span>
                 <div className="flex items-center gap-2">
-                  <span className="bg-teal-700 text-white">
-                    {item.quantity}
-                  </span>
                   <Button
                     size="sm"
                     variant="outline"

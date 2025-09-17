@@ -7,7 +7,7 @@ export const useCartStore = create((set, get) => ({
   //--ACCIONES
   addProduct: (product) => {
     const { items } = get();
-    const existingProduct = items.findIndex((item) => item._id === product.id);
+    const existingProduct = items.findIndex((item) => item._id === product._id);
 
     if (existingProduct !== -1) {
       const updatedItems = [...items];

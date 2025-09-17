@@ -1,4 +1,5 @@
 //src/components/layout/AppSidebar.jsx
+"use client";
 import { Home, Boxes, Rocket, Settings, Settings2, LogOut } from "lucide-react";
 
 import {
@@ -15,8 +16,8 @@ import { Separator } from "@/components/ui/separator";
 import Link from "next/link";
 import ShoppingCart from "../cart/ShoppingCart";
 import Logo from "./Logo";
-import { SignOutButton } from "@clerk/nextjs";
-import { Button } from "../ui/button";
+import { SignOutButton, useAuth } from "@clerk/nextjs";
+import { Button } from "@/components/ui/button";
 
 // Menu items.
 const items = [
@@ -38,6 +39,13 @@ const items = [
 ];
 
 export function AppSidebar() {
+  const { isSignedIn, sessionClaims } = useAuth();
+
+  const isAdmin = sessionClaims?.metadata?.role === "admin";
+
+  //console.log(sessionClaims);
+
+  //console.log(isAdmin);
   return (
     <Sidebar>
       <SidebarContent className="bg-stone-50 text-stone-700 font-semibold flex flex-col justify-between">
