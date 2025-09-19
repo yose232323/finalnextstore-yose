@@ -1,6 +1,6 @@
 //src/app/api/products/route.js
 import { NextResponse } from "next/server";
-import dbConnect from "@/lib/dbConnect";
+import dbConnect from "../../../lib/dbConnect";
 import Product from "@/models/Product";
 import { v2 as cloudinary } from "cloudinary";
 
